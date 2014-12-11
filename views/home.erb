@@ -7,10 +7,10 @@
 
 <!-- Displaying the Notes -->
 <% @notes.each do |note| %>
-  <article <% 'class="complete"' if note.complete %>>
+  <article <%= 'class="complete"' if note.complete %>>
     <p>
       <%= note.content %>
-      <span><a href="/<%= note.id %>"[edit]</a></span>
+      <span><a href="/<%= note.id %>">[edit]</a></span>
     </p>
     <p class="links">
       <a href="/<%= note.id %>/complete">&#8623;</a>

@@ -41,6 +41,7 @@ put '/:id' do
   n = Note.get params[:id]
   n.content = params[:content]
   n.complete = params[:complete] ? 1 : 0
+  n.updated_at = Time.now
   n.save
   redirect '/'
 end
@@ -48,8 +49,24 @@ end
 ##### Deleting a Note
 get '/:id/delete' do
   @note = Note.get params[:id]
-  @title = "Confirm deletion of ntoe ##{params[:id]}"
+  @title = "Confirm deletion of note ##{params[:id]}"
   erb :delete
+end
+
+##### Using DELETE for deleting
+delete '/:id' do
+  n = Note.get params[:id]
+  n.destroy
+  redirect '/'
+end
+
+##### Marking a Note as "Complete"
+get '/:id/complete' do
+  n = Note.get params[:id]
+  n.complete = n.complete ? 0 : 1 # flip it
+  n.updated_at = Time.now
+  n.save
+  redirect '/'
 end
 
 DataMapper.finalize.auto_upgrade!
