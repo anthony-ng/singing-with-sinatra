@@ -1,34 +1,41 @@
 require 'sinatra'
 
-# get '/' do
-#   "Hello, World!"
-# end
+###### The Very Basics (a 'Route')
 
-# get '/about' do
-#   'A little about me.'
-# end
+get '/' do
+  "Hello, World!"
+end
 
-# get '/hello/:name' do
-#   "Hello there, #{params[:name].upcase}"
-# end
+get '/about' do
+  'A little about me.'
+end
 
-# get '/hello/:name/:city' do
-#   "Hey there #{params[:name].capitalize} from #{params[:city].upcase}."
-# end
+###### Accessing URL Parameters
 
-# get '/more/*' do
-#   params[:splat]
-# end
+get '/hello/:name' do
+  "Hello there, #{params[:name].upcase}"
+end
 
-# get '/form' do
-#   erb :form
-# end
+get '/hello/:name/:city' do
+  "Hey there #{params[:name].capitalize} from #{params[:city].upcase}."
+end
 
-# post '/form' do
-#   "You said '#{params[:message]}'"
-# end
+get '/more/*' do
+  params[:splat]
+end
 
-#message encryptor
+###### View Files & POST
+
+get '/form' do
+  erb :form
+end
+
+post '/form' do
+  "You said '#{params[:message]}'"
+end
+
+###### Message encryptor
+
 get '/secret' do
   erb :secret
 end
@@ -37,14 +44,14 @@ post '/secret' do
   params[:secret].reverse
 end
 
-#decryptor directly on page
+###### Decryptor directly on page
 get '/decrypt/:secret' do
   params[:secret].reverse
 end
 
 # get '/*' do
-  # status 404
-  # 'not found'
+#   status 404
+#   'not found'
 # end
 
 not_found do
