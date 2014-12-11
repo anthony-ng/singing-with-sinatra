@@ -2,24 +2,35 @@
 <html lang='en'>
 <head>
   <meta charset='utf8'>
-  <title><%= @title + ' | Recall' %></title>
-  <link rel="stylesheet" type="text/css" href="/reset.css">
-  <link rel="stylesheet" type="text/css" href="/style.css">
+  <title><%= "#{@title} | #{SITE_TITLE}" %></title>
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="alternate" type="application/rss+xml" href="/rss.xml">
 </head>
 <body>
   <header>
     <hgroup>
-      <h1><a href="/">Recall</a></h1>
-      <h2>'casuse you're too busy to remember</h2>
+      <h1><a href="/"><%= SITE_TITLE %></a></h1>
+      <h2><%= SITE_DESCRIPTION %></h2>
     </hgroup>
   </header>
 
   <div id="main">
+  
+    <% if flash[:notice] %>
+      <p class="notice"><%= flash[:notice] %>
+    <% end %>
+ 
+    <% if flash[:error] %>
+      <p class="error"><%= flash[:error] %>
+    <% end %>
+
     <%= yield %>
   </div>
 
   <footer>
-    <p><small>An app for <a href="http://www.tongng.com">Tong Ng</a>.</small></p>
+    <p><small>An app for <a href="http://www.tongng.com">Anthony Ng</a>.</small></p>
   </footer>
 </body>
 </html>
+
