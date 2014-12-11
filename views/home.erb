@@ -4,5 +4,18 @@
     <input type="submit" value="Take Note!">
   </form>
 </section>
- 
-<% # display notes %>
+
+<!-- Displaying the Notes -->
+<% @notes.each do |note| %>
+  <article <% 'class="complete"' if note.complete %>>
+    <p>
+      <%= note.content %>
+      <span><a href="/<%= note.id %>"[edit]</a></span>
+    </p>
+    <p class="links">
+      <a href="/<%= note.id %>/complete">&#8623;</a>
+    </p>
+    <p class="meta">Created: <%= note.created_at %></p>
+  </article>
+<% end %>
+
